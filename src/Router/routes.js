@@ -10,8 +10,8 @@ export default (
 	<Switch>
 		<Route exact path="/" component={Home} />
 		<Route path="/all" component={AllCards} />
-		<Route path="/mydeck" component={MyDeck} />
-		<Route path="/account" component={Account} />
-		<Route path="/random" component={Random} />
+		{/* <Route path="/mydeck" component={MyDeck} /> */}
+		{/* <Route path="/account" component={Account} /> */}
+		{/* <Route path="/random" component={Random} /> */}
 	</Switch>
 )
