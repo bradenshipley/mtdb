@@ -13,10 +13,13 @@ import MenuIcon from '@material-ui/icons/Menu'
 import List from '@material-ui/core/List'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import { Link } from 'react-router-dom'
+import { Link as MaterialLink } from '@material-ui/core'
+import { useAuth0 } from '../../react-auth0-spa'
 
 const Navbar = () => {
 	const classes = useStyles()
 	const [open, setOpen] = React.useState(false)
+	const { isAuthenticated, loginWithRedirect, logout } = useAuth0()
 	const handleDrawerOpen = () => {
 		setOpen(true)
 	}
@@ -38,9 +41,28 @@ const Navbar = () => {
 						<MenuIcon />
 					</IconButton>
 					<Typography variant="h6" className={classes.title}>
-						Magic The Deck Builder
+						<MaterialLink
+							component={Link}
+							to="/"
+							color="inherit"
+							className={classes.link}
+						>
+							Magic The Deck Builder
+						</MaterialLink>
 					</Typography>
-					<Button color="inherit">Login</Button>
+					{!isAuthenticated && (
+						<Button
+							color="inherit"
+							onClick={() => loginWithRedirect()}
+						>
+							Login
+						</Button>
+					)}
+					{isAuthenticated && (
+						<Button onClick={() => logout()} color="inherit">
+							Logout
+						</Button>
+					)}
 				</Toolbar>
 			</AppBar>
 			<Drawer
@@ -85,7 +107,8 @@ const useStyles = makeStyles(theme => ({
 	},
 
 	title: {
-		flexGrow: 1
+		flexGrow: 1,
+		textDecoration: 'inherit'
 	},
 	hide: {
 		display: 'none'
