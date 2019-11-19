@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box'
 
 import Navbar from '../../Navbar/Navbar'
 import axios from 'axios'
-import MagicCard from '../Card/Card'
+import MagicCard from '../Cards/MagicCard'
 const AllCards = () => {
 	const [cards, setCards] = useState([])
 	useEffect(() => {
@@ -16,7 +16,7 @@ const AllCards = () => {
 			.catch(err => {
 				console.log(err)
 			})
-	}, [])
+	})
 
 	return (
 		<>
